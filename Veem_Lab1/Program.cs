@@ -3,25 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//Учебный пример реализации immutable (неизменяемого) класса без дальнейшей реализации
 namespace Veem_Lab1
 {
   sealed class MyImmutableClass
   {
     private string name { get;  }
-    private int id { get; }
+
+    private readonly int id;
+
     public MyImmutableClass(string _name, int _id)
     {
       name = _name;
       id = _id;
     }
 
-    public MyImmutableClass changeId(ref MyImmutableClass myImmutableClass)
+    public MyImmutableClass ChangeId(ref MyImmutableClass myImmutableClass)
     {
       string nameTemp = myImmutableClass.name;
       Console.Write("Введите новое значение Id: ");
       int idTemp = int.Parse(Console.ReadLine());
-      MyImmutableClass temp = new MyImmutableClass(nameTemp, idTemp);
+      MyImmutableClass temp = new(nameTemp, idTemp);
       myImmutableClass = null; 
       return temp;
     }
